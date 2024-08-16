@@ -1,4 +1,4 @@
-package com.devops.coach;
+package com.konko.coach;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class StartApplicationTest {
         mockMvc.perform(get("/"))
             .andExpect(status().isOk())
             .andExpect(view().name("index"))
-            .andExpect(model().attribute("title", "Welcome folks..We are learning Kubernete Deployment using Helm, Jenkins Pipeline Today's date is Feb 18th..!!!! "))
+            .andExpect(model().attribute("title", "Welcome Konko..Your apps is up and running. You used Jenkins, Docker and Helm, Jenkins Pipeline Today's date is Aug 16th..!!!! "))
             .andExpect(model().attribute("msg", "Hello All..We are deploying springboot application into EKS cluster using Helm + Jenkins Pipeline!!!!"));
     }
 }

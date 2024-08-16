@@ -1,4 +1,4 @@
-package com.devops.coach;
+package com.konko.coach;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,7 +12,7 @@ public class StartApplication {
 
     @GetMapping("/")
     public String index(final Model model) {
-        model.addAttribute("title", "Welcome folks..We are learning Kubernete Deployment using Helm, Jenkins Pipeline Today's date is June 19th..!!!! ");
+        model.addAttribute("title", "Welcome Konko..Your apps is up and running. You used Jenkins, Docker and Helm, Jenkins Pipeline Today's date is Aug 16th 2024..!!!! ");
         model.addAttribute("msg", "Hello All..We are deploying springboot application into EKS cluster using Helm + Jenkins Pipeline!!!!");
         return "index";
     }

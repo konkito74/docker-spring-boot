@@ -21,7 +21,7 @@ public class StartApplicationTest {
         mockMvc.perform(get("/"))
             .andExpect(status().isOk())
             .andExpect(view().name("index"))
-            .andExpect(model().attribute("title", "Welcome Konko..Your apps is up and running. You used Jenkins, Docker and Helm, Jenkins Pipeline Today's date is Aug 16th..!!!! "))
+            .andExpect(model().attribute("title", "Welcome Konko..Your apps is up and running. You used Jenkins, Docker and Helm, Jenkins Pipeline Today's date is Aug 16th 2024..!!!! "))
             .andExpect(model().attribute("msg", "Hello All..We are deploying springboot application into EKS cluster using Helm + Jenkins Pipeline!!!!"));
     }
 }

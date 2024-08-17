@@ -1,0 +1,33 @@
+pipeline {
+    agent any
+    tools {
+        maven "Maven3.9.8"
+    }
+    stages {
+        stage('Clone repo') {
+            steps {
+            git credentialsId: 'MyGitCredsUserToken', url: 'https://github.com/konkito74/docker-spring-boot.git'
+            }
+        }
+        stage('Maven Build App ') {
+            steps {
+            sh 'mvn clean package'
+            }
+        }
+        stage('Login AWS Docker Build & Tag image ') {
+            steps {
+               sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 522047284889.dkr.ecr.us-east-1.amazonaws.com'
+               sh 'docker build -t konko .'
+               sh 'docker tag konko:latest 522047284889.dkr.ecr.us-east-1.amazonaws.com/konko:latest'
+            }
+        }
+        stage('Docker push AWS-ECR') {
+            steps {
+              sh 'docker push 522047284889.dkr.ecr.us-east-1.amazonaws.com/konko:latest'
+            }
+        }
+        stage('Kubernetes deployment using helm') {
+            steps {
+   sh 'helm upgrade first --install konkospringbootchart --namespace helm-deployment'
+              }  
+        }
